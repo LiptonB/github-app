@@ -18,6 +18,9 @@ int main() {
     exit(1);
   }
 
+  printf("Socket created, about to connect\n");
+  getchar();
+
   addr.sin_family = AF_INET;
   addr.sin_port = htons(12345);
   addr.sin_addr.s_addr = inet_addr("127.0.0.1");
@@ -26,10 +29,18 @@ int main() {
     exit(1);
   }
 
+  printf("Socket connected, about to send\n");
+  getchar();
+
   strcpy(buffer, "A message.");
   sent_length = strlen(buffer);
 
   sent_length = send(conn_sock, buffer, sent_length, 0);
 
+  printf("Message sent, about to close\n");
+  getchar();
+
   close(conn_sock);
+
+  printf("Socket closed\n");
 }
