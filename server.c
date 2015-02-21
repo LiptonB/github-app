@@ -1,10 +1,10 @@
-#include <arpa/inet.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netinet/ip.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 
 void handle_connection(int listen_sock) {
   struct sockaddr_in peer_addr;
@@ -39,7 +39,7 @@ int main() {
   struct sockaddr_in addr;
 
   if ((listen_sock = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
-    perror("open socket");
+    perror("socket");
     exit(1);
   }
 
@@ -55,6 +55,8 @@ int main() {
     perror("listen");
     exit(1);
   }
+
+  printf("Server running. Interrupt to exit.\n");
 
   while(1) {
     handle_connection(listen_sock);
