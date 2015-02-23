@@ -7,6 +7,10 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
+/* Before running, start tcpdump:
+ * sudo tcpdump -nS -i any tcp port 12345
+ */
+
 int main() {
   int conn_sock;
   struct sockaddr_in addr;
